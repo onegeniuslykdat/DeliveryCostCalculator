@@ -45,7 +45,7 @@ jobs:
             az deployment group create \
               --resource-group deliverycostcalculator-rg \
               --name azddeployment \
-              --template-file ./deployment/azure/azd.bicep \
+              --template-file ./deployment/azure/azd.json \
               --parameters resourceName=deliverycostcalculatorservice
 
   deploy-to-app-service:
