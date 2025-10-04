@@ -25,6 +25,8 @@ jobs:
       run: npm run build
 
   azure-login-and-create-resources:
+    runs-on: ubuntu-latest
+    
     steps:
       - name: Login to Azure
         uses: azure/login@v1
@@ -42,6 +44,8 @@ jobs:
               --parameters resourceName=deliverycostcalculatorservice
 
   deploy-to-app-service:
+    runs-on: ubuntu-latest
+    
     steps:
       - name: Deploy app to Azure App Service
         uses: azure/webapps-deploy@v2
