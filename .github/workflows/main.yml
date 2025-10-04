@@ -1,0 +1,46 @@
+name: Build and Deploy Next.js App to Azure App Service using resources provisioned via IaC BICEP ARM templates 
+
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  build-and-deploy:
+    runs-on: ubuntu-latest
+
+    steps:
+    - name: Checkout code
+      uses: actions/checkout@v3
+
+    - name: Setup Node.js
+      uses: actions/setup-node@v3
+      with:
+        node-version: '22'
+
+    - name: Install dependencies
+      run: npm install
+
+    - name: Build Next.js app
+      run: npm run build
+
+    - name: Login to Azure
+      uses: azure/login@v1
+      with:
+        creds: ${{ secrets.AZURE_CREDENTIALS }}
+
+    - name: Deploy infrastructure (Bicep)
+      uses: azure/cli@v2
+      with:
+        inlineScript: |
+          az deployment group create \
+            --resource-group deliverycostcalculator-rg \
+            --name azddeployment \
+            --template-file ./deployment/azure/azd.json \
+            --parameters resourceName=deliverycostcalculatorservice
+
+    - name: Deploy app to Azure App Service
+      uses: azure/webapps-deploy@v2
+      with:
+        app-name: deliverycostcalculatorservice
+        package: .
