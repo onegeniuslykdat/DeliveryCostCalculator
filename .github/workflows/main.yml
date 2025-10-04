@@ -24,23 +24,27 @@ jobs:
     - name: Build Next.js app
       run: npm run build
 
-    - name: Login to Azure
-      uses: azure/login@v1
-      with:
-        creds: ${{ secrets.AZURE_CREDENTIALS }}
+  azure-login-and-create-resources:
+    steps:
+      - name: Login to Azure
+        uses: azure/login@v1
+        with:
+          creds: ${{ secrets.AZURE_CREDENTIALS }}
 
-    - name: Deploy infrastructure (Bicep)
-      uses: azure/cli@v2
-      with:
-        inlineScript: |
-          az deployment group create \
-            --resource-group deliverycostcalculator-rg \
-            --name azddeployment \
-            --template-file ./deployment/azure/azd.json \
-            --parameters resourceName=deliverycostcalculatorservice
+      - name: Deploy infrastructure (Bicep)
+        uses: azure/cli@v2
+        with:
+          inlineScript: |
+            az deployment group create \
+              --resource-group deliverycostcalculator-rg \
+              --name azddeployment \
+              --template-file ./deployment/azure/azd.json \
+              --parameters resourceName=deliverycostcalculatorservice
 
-    - name: Deploy app to Azure App Service
-      uses: azure/webapps-deploy@v2
-      with:
-        app-name: deliverycostcalculatorservice
-        package: ./out
+  deploy-to-app-service:
+    steps:
+      - name: Deploy app to Azure App Service
+        uses: azure/webapps-deploy@v2
+        with:
+          app-name: deliverycostcalculatorservice
+          package: ./out
