@@ -6,7 +6,7 @@ on:
       - main
 
 jobs:
-  build-and-deploy:
+  build-and-package:
     runs-on: ubuntu-latest
 
     steps:
@@ -24,7 +24,7 @@ jobs:
     - name: Build Next.js app
       run: npm run build
 
-  azure-login-and-create-resources:
+  azure-login:
     runs-on: ubuntu-latest
     
     steps:
@@ -32,7 +32,12 @@ jobs:
         uses: azure/login@v1
         with:
           creds: ${{ secrets.AZURE_CREDENTIALS }}
-
+       
+  create-resources:
+     runs-on: ubuntu-latest
+     needs: azure-login
+     
+     steps:     
       - name: Deploy infrastructure (Bicep)
         uses: azure/cli@v2
         with:
@@ -45,6 +50,7 @@ jobs:
 
   deploy-to-app-service:
     runs-on: ubuntu-latest
+    needs: [build-and-package, create-resources]
     
     steps:
       - name: Deploy app to Azure App Service
