@@ -72,5 +72,5 @@ jobs:
       - name: Deploy app to Azure App Service
         uses: azure/webapps-deploy@v2
         with:
-          app-name: deliverycostcalculator
+          app-name: deliverycostcalculatorservice
           package: .
