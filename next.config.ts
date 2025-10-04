@@ -4,8 +4,9 @@ const nextConfig: NextConfig = {
   /* config options here */
 };
 
+// module.exports = {
+//   output: 'export' // Required for `next export`
+// };
+
 export default nextConfig;
 
-//module.exports = {
-//  output: 'export' // Required for `next export`
-//};
