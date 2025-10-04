@@ -25,6 +25,12 @@ resource appService 'Microsoft.Web/sites@2024-11-01' = {
     siteConfig: {
       linuxFxVersion: linuxVersion
       nodeVersion: nodeVersion
+      appSettings: [
+        {
+          name: 'WEBSITE_RUN_FROM_PACKAGE'
+          value: '0'
+        }
+      ]
     }
     httpsOnly: true
     reserved: true
