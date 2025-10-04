@@ -25,6 +25,7 @@ resource appService 'Microsoft.Web/sites@2024-11-01' = {
     siteConfig: {
       linuxFxVersion: linuxVersion
       nodeVersion: nodeVersion
+      appCommandLine: 'npm start'
       appSettings: [
         {
           name: 'WEBSITE_RUN_FROM_PACKAGE'

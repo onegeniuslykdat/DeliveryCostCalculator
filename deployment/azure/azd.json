@@ -5,7 +5,7 @@
     "_generator": {
       "name": "bicep",
       "version": "0.38.5.1644",
-      "templateHash": "8424016400491628156"
+      "templateHash": "16877430766604814105"
     }
   },
   "parameters": {
@@ -50,6 +50,7 @@
         "siteConfig": {
           "linuxFxVersion": "[parameters('linuxVersion')]",
           "nodeVersion": "[parameters('nodeVersion')]",
+          "appCommandLine": "npm start",
           "appSettings": [
             {
               "name": "WEBSITE_RUN_FROM_PACKAGE",
