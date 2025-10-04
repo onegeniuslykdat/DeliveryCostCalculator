@@ -5,7 +5,7 @@
     "_generator": {
       "name": "bicep",
       "version": "0.38.5.1644",
-      "templateHash": "14760308085004885230"
+      "templateHash": "15925969375638287760"
     }
   },
   "parameters": {
@@ -26,18 +26,6 @@
     }
   },
   "resources": [
-    {
-      "type": "Microsoft.Web/sites/sourcecontrols",
-      "apiVersion": "2024-11-01",
-      "name": "[format('{0}/{1}', parameters('resourceName'), 'web')]",
-      "properties": {
-        "repoUrl": "https://github.com/onegeniuslykdat/DeliveryCostCalculator.git",
-        "branch": "main"
-      },
-      "dependsOn": [
-        "[resourceId('Microsoft.Web/sites', parameters('resourceName'))]"
-      ]
-    },
     {
       "type": "Microsoft.Web/serverfarms",
       "apiVersion": "2024-11-01",

@@ -29,13 +29,6 @@ resource appService 'Microsoft.Web/sites@2024-11-01' = {
     httpsOnly: true
     reserved: true
   }
-  resource controls 'sourcecontrols' = {
-    name: 'web'
-    properties: {
-      repoUrl: 'https://github.com/onegeniuslykdat/DeliveryCostCalculator.git'
-      branch: 'main'
-    }
-  }
 }
 
 output webUrl string = appService.properties.defaultHostName
