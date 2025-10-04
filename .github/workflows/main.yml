@@ -41,7 +41,7 @@ jobs:
        
   create-resources:
      runs-on: ubuntu-latest
-     needs: azure-login
+     needs: [build-and-package, azure-login]
      
      steps:
       - name: Download artifacts
@@ -62,7 +62,7 @@ jobs:
 
   deploy-to-app-service:
     runs-on: ubuntu-latest
-    needs: [build-and-package, create-resources]
+    needs: create-resources
     
     steps:
       - name: Download artifacts
