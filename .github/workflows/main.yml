@@ -26,7 +26,7 @@ jobs:
       
     - name: Create zip folder
       run: |
-        mkdir -p deploysite -r deploy/site.zipp . -x "*.git" "deploy/*"
+        mkdir -p deploy zip -r deploy/site.zipp . -x "node_modules" "*.git" "deploy/*"
     
     - name: Upload files as artifacts
       uses: actions/upload-artifact@v4
