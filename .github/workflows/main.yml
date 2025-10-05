@@ -30,13 +30,13 @@ jobs:
     - name: Create zip folder
       run: |
         mkdir -p deploy
-        zip -r deploy/site.zip . -x "node_modules/*" ".git/*" "deploy/*" "deployment/*"
+        zip -r deploy/site.zip . -x "node_modules/*" ".git/*" ".github/*" "deploy/*" "deployment/*"
     
     - name: Upload files as artifacts
       uses: actions/upload-artifact@v4
       with:
         name: site
-        path: ./deploy/site.zip/
+        path: ./deploy/site.zip
 
   azure-login-and-create-resources:
     runs-on: ubuntu-latest
