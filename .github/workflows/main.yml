@@ -24,6 +24,9 @@ jobs:
     #- name: Build Next.js app
     #  run: npm run build
       
+    - name: Install zip utility
+      run: sudo apt-get update && sudo apt-get install -y zip
+
     - name: Create zip folder
       run: |
         mkdir -p deploy zip -r deploy/site.zipp . -x "node_modules" "*.git" "deploy/*"
