@@ -36,7 +36,7 @@ jobs:
       uses: actions/upload-artifact@v4
       with:
         name: site
-        path: ./deploy/site.zip/site.zip
+        path: ./deploy/site.zip/
 
   azure-login-and-create-resources:
     runs-on: ubuntu-latest
