@@ -21,14 +21,18 @@ jobs:
     - name: Install dependencies
       run: npm install
 
-    - name: Build Next.js app
-      run: npm run build
+    #- name: Build Next.js app
+    #  run: npm run build
       
+    - name: Create zip folder
+      run: |
+        mkdir -p deploysite -r deploy/site.zipp . -x "*.git" "deploy/*"
+    
     - name: Upload files as artifacts
       uses: actions/upload-artifact@v4
       with:
         name: site
-        path: .
+        path: ./deploy/site.zipp
 
   azure-login-and-create-resources:
     runs-on: ubuntu-latest

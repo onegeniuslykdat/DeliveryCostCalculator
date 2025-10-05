@@ -29,7 +29,11 @@ resource appService 'Microsoft.Web/sites@2024-11-01' = {
       appSettings: [
         {
           name: 'WEBSITE_RUN_FROM_PACKAGE'
-          value: '0'
+          value: '1'
+        }
+        {
+          name: 'SCM_DO_BUILD_DURING_DEPLOYMENT'
+          value: 'true'
         }
       ]
     }
